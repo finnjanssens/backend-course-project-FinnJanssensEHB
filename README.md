@@ -28,5 +28,3 @@
 -   [ ] Mogelijkheid tot toewijzen sanctie bij onopgehaalde gereserveerde items
 
 ### ERD
-
-<iframe width="560" height="315" src='https://dbdiagram.io/embed/624d8b20d043196e390810c3'> </iframe>

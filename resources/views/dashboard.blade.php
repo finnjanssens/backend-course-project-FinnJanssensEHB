@@ -14,4 +14,20 @@
             </div>
         </div>
     </div>
+    <div class="py-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <h2 class="font-bold">Items</h2>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <form>
+                    <label for="brand">Brand</label>
+                    <select id="brand">
+                        @foreach ($brands as $brand)
+                            <option value="{{ $brand->brand }}">{{ $brand->brand }}</option>
+                        @endforeach
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </x-app-layout>

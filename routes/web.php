@@ -18,6 +18,6 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::get('/dashboard', [ItemController::class, "allItems"])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [ItemController::class, "allData"])->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

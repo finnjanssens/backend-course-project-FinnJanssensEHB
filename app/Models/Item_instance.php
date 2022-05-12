@@ -5,22 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Item_instance extends Model
 {
     use HasFactory;
+
+    public function item_id()
+    {
+        return $this->belongsTo(Item::class);
+    }
 
     /**
      * @var array<string>
      */
     protected $fillable = [
-        'brand',
-        'model',
-        'description',
-        'category'
+        'damage',
+        'notes',
+        'status',
     ];
-
-    public function item_instance()
-    {
-        return $this->hasMany(Item_instance::class);
-    }
 }

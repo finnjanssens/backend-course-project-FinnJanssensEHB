@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 use App\Models\Item;
+use App\Models\Item_instance;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $TestUser->role = "admin";
         $TestUser->save();
 
-        $csv = fopen(base_path("database/data/medialab_data.csv"), "r");
+        $csv = fopen(base_path("database/data/items.csv"), "r");
         $firstline = true;
         while (($data = fgetcsv($csv, 2000, ";")) !== FALSE) {
             if (!$firstline) {
@@ -43,5 +44,19 @@ class DatabaseSeeder extends Seeder
         }
 
         fclose($csv);
+
+        $items = Item::all();
+
+
+        foreach ($items as $i) {
+            for ($j = 0; $j < rand(1, 5); $j++) {
+                $item_instance = new Item_instance();
+                $item_instance->item_id = $i->id;
+                $item_instance->damage = "";
+                $item_instance->notes = "";
+                $item_instance->status = "available";
+                $item_instance->save();
+            }
+        }
     }
 }

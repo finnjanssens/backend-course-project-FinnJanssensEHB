@@ -4,28 +4,37 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
-    <div class="py-12">
+    <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
+                    <div class="py-4">
+                        <h2 class="font-bold text-xl text-black leading-tight">Items</h2>
+                        <p>Click on an item to see its instances</p>
+                    </div>
+                    <table class="table-auto w-full">
+                        <thead>
+                            <tr>
+                                <th class="text-left">#</th>
+                                <th class="text-left">Brand</th>
+                                <th class="text-left">Model</th>
+                                <th class="text-left">Category</th>
+                                <th class="text-left">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($items as $item)
+                                <tr class="hover:bg-black hover:text-white cursor-pointer">
+                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $item->brand }}</td>
+                                    <td>{{ $item->model }}</td>
+                                    <td>{{ $item->category }}</td>
+                                    <td>{{ $item->description }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="py-8">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <h2 class="font-bold">Items</h2>
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <form>
-                    <label for="brand">Brand</label>
-                    <select id="brand">
-                        @foreach ($brands as $brand)
-                            <option value="{{ $brand->brand }}">{{ $brand->brand }}</option>
-                        @endforeach
-                    </select>
-                </form>
             </div>
         </div>
     </div>

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\Item_instanceController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [ItemController::class, "allData"])->middleware(['auth'])->name('dashboard');
+
+Route::get('/item/{id}', [Item_instanceController::class, "getItemInstances"])->middleware(['auth']);
 
 require __DIR__ . '/auth.php';

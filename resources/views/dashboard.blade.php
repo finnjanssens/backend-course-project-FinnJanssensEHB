@@ -24,7 +24,8 @@
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
-                                <tr class="hover:bg-black hover:text-white cursor-pointer">
+                                <tr class="hover:bg-black hover:text-white cursor-pointer"
+                                    onclick="window.location='/item/{{ $item->id }}'">
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->brand }}</td>
                                     <td>{{ $item->model }}</td>

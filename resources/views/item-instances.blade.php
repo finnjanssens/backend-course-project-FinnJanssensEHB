@@ -26,7 +26,9 @@
                             @foreach ($itemInstances as $itemInstance)
                                 <tr class="hover:bg-black hover:text-white cursor-pointer">
                                     <td>{{ $itemInstance->id }}</td>
-                                    <td>{{ $itemInstance->damage === '' ? '/' : $itemInstance->damage }}</td>
+                                    <td><input class="border-0 text-black" type="text"
+                                            value={{ $itemInstance->damage }}></td>
+                                    {{-- <td>{{ $itemInstance->damage === '' ? '/' : $itemInstance->damage }}</td> --}}
                                     <td>{{ $itemInstance->notes === '' ? '/' : $itemInstance->notes }}</td>
                                     <td>{{ $itemInstance->status }}</td>
                                 </tr>

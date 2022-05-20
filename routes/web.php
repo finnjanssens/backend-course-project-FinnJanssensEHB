@@ -24,4 +24,6 @@ Route::get('/dashboard', [ItemController::class, "allData"])->middleware(['auth'
 
 Route::get('/item/{id}', [Item_instanceController::class, "getItemInstances"])->middleware(['auth']);
 
+Route::post('/item/{id}', [Item_instanceController::class, "updateItemInstance"])->middleware(['auth']);
+
 require __DIR__ . '/auth.php';

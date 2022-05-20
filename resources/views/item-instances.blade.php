@@ -13,6 +13,12 @@
                             {{ $item->model }}</h2>
                         <h3>{{ $item->description }}</h3>
                     </div>
+                    @foreach ($itemInstances as $i)
+                        <form method="POST" id="{{ $i->id }}_form" action="/item/{{ $item->id }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                            <input type="hidden" name="id" value="{{ $i->id }}" />
+                        </form>
+                    @endforeach
                     <table class="table-auto w-full">
                         <thead>
                             <tr>
@@ -20,17 +26,45 @@
                                 <th class="text-left">Damage</th>
                                 <th class="text-left">Notes</th>
                                 <th class="text-left">Status</th>
+                                <th class="text-right"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($itemInstances as $itemInstance)
                                 <tr class="hover:bg-black hover:text-white cursor-pointer">
                                     <td>{{ $itemInstance->id }}</td>
-                                    <td><input class="border-0 text-black" type="text"
+                                    <td><input name="damage" form="{{ $itemInstance->id }}_form"
+                                            class="border-0 text-black focus:border-0" type="text"
                                             value={{ $itemInstance->damage }}></td>
                                     {{-- <td>{{ $itemInstance->damage === '' ? '/' : $itemInstance->damage }}</td> --}}
-                                    <td>{{ $itemInstance->notes === '' ? '/' : $itemInstance->notes }}</td>
-                                    <td>{{ $itemInstance->status }}</td>
+                                    <td><input name="notes" form="{{ $itemInstance->id }}_form"
+                                            class="border-0 text-black focus:border-0" type="text"
+                                            value={{ $itemInstance->notes }}></td>
+                                    <td>
+                                        <select name="status" form="{{ $itemInstance->id }}_form"
+                                            class="text-black">
+                                            <option value="available"
+                                                @if ($itemInstance->status == 'available') selected="selected" @endif>available
+                                            </option>
+                                            <option value="lent"
+                                                @if ($itemInstance->status == 'lent') selected="selected" @endif>lent
+                                            </option>
+                                            <option value="reserved"
+                                                @if ($itemInstance->status == 'reserved') selected="selected" @endif>reserved
+                                            </option>
+                                            <option value="repair"
+                                                @if ($itemInstance->status == 'repair') selected="selected" @endif>repair
+                                            </option>
+                                            <option value="unavailable"
+                                                @if ($itemInstance->status == 'unavailable') selected="selected" @endif>unavailable
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <td class="text-right">
+                                        <input
+                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                            type="submit" form="{{ $itemInstance->id }}_form" value="Save">
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

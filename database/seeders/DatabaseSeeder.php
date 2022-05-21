@@ -71,23 +71,44 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        $itemsToLoan = [17, 22, 33, 45];
-        $itemsToReserve = [18, 23, 34, 46];
+        $itemsToLoanFinn = [17, 22, 33, 45];
+        $itemsToReserveFinn = [18, 23, 34, 46];
+        $itemsToLoanMike = [4, 13, 53, 36];
+        $itemsToReserveMike = [61, 3, 21, 1];
 
-        $user = User::find(1);
-        $user->item_instances()->sync(array_merge($itemsToLoan, $itemsToReserve));
+        $userFinn = User::find(2);
+        $userFinn->item_instances()->sync(array_merge($itemsToLoanFinn, $itemsToReserveFinn));
 
-        foreach ($itemsToLoan as $index) {
+        foreach ($itemsToLoanFinn as $index) {
             $instance = Item_instance::find($index);
             $instance->status = "lent";
-            $instance->current_loan_starts_at = Carbon::now()->toDateTimeString();
-            $instance->current_loan_ends_at = Carbon::now()->addDays(5)->toDateTimeString();
+            $start = Carbon::now()->subDays(rand(0, 3));
+            $instance->current_loan_starts_at = $start->toDateTimeString();
+            $instance->current_loan_ends_at = $start->addDays(5)->toDateTimeString();
             $instance->save();
         }
-        foreach ($itemsToReserve as $index) {
+        foreach ($itemsToReserveFinn as $index) {
             $instance = Item_instance::find($index);
             $instance->status = "reserved";
-            $instance->reserved_for = Carbon::now()->addDays(2)->toDateTimeString();
+            $instance->reserved_for = Carbon::now()->addDays(rand(1, 8))->toDateTimeString();
+            $instance->save();
+        }
+
+        $userMike = User::find(1);
+        $userMike->item_instances()->sync(array_merge($itemsToLoanMike, $itemsToReserveMike));
+
+        foreach ($itemsToLoanMike as $index) {
+            $instance = Item_instance::find($index);
+            $instance->status = "lent";
+            $start = Carbon::now()->subDays(rand(0, 3));
+            $instance->current_loan_starts_at = $start->toDateTimeString();
+            $instance->current_loan_ends_at = $start->addDays(5)->toDateTimeString();
+            $instance->save();
+        }
+        foreach ($itemsToReserveMike as $index) {
+            $instance = Item_instance::find($index);
+            $instance->status = "reserved";
+            $instance->reserved_for = Carbon::now()->addDays(rand(2, 6))->toDateTimeString();
             $instance->save();
         }
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\Item_instanceController;
+use App\Http\Controllers\LoanController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -30,9 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/item/{id}', [Item_instanceController::class, "updateItemInstance"]);
     });
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [LoanController::class, "getUserLoansAndReservations"])
+        ->name('dashboard');
 });
 
 require __DIR__ . '/auth.php';

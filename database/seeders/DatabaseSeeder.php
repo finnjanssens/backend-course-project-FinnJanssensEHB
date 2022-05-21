@@ -66,7 +66,21 @@ class DatabaseSeeder extends Seeder
             }
         }
 
+        $itemsToLoan = [17, 22, 33, 45];
+        $itemsToReserve = [18, 23, 34, 46];
+
         $user = User::find(1);
-        $user->item_instances()->sync([17, 22, 33, 45]);
+        $user->item_instances()->sync(array_merge($itemsToLoan, $itemsToReserve));
+
+        foreach ($itemsToLoan as $index) {
+            $instance = Item_instance::find($index);
+            $instance->status = "lent";
+            $instance->save();
+        }
+        foreach ($itemsToReserve as $index) {
+            $instance = Item_instance::find($index);
+            $instance->status = "reserved";
+            $instance->save();
+        }
     }
 }

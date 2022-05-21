@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('item_instances', function (Blueprint $table) {
+        Schema::create('loans', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('item_id')->references('id')->on('items')->onDelete('cascade');
-            $table->string('damage');
-            $table->string('notes');
-            $table->string('status');
+            $table->foreignId('user_id')->nullable()->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('item_instance_id')->nullable()->references('id')->on('item_instances')->onDelete('cascade');
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_instances');
+        Schema::dropIfExists('loans');
     }
 };

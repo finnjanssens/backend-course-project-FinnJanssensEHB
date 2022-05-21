@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Loan;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -42,4 +44,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function loan()
+    {
+        return $this->belongsTo(Loan::class);
+    }
+
+    public function item_instances()
+    {
+        // loans is the pivot table. you can also use Loan::class, since you've already created the class.
+        return $this->belongsToMany(Item_instance::class, 'loans', 'user_id', 'item_instance_id')->withTimestamps();
+    }
 }

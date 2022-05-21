@@ -82,7 +82,7 @@ class DatabaseSeeder extends Seeder
         foreach ($itemsToLoanFinn as $index) {
             $instance = Item_instance::find($index);
             $instance->status = "lent";
-            $start = Carbon::now()->subDays(rand(0, 3));
+            $start = Carbon::now()->subDays(rand(0, 8))->subSeconds(rand(0, 40000));
             $instance->current_loan_starts_at = $start->toDateTimeString();
             $instance->current_loan_ends_at = $start->addDays(5)->toDateTimeString();
             $instance->save();
@@ -90,7 +90,7 @@ class DatabaseSeeder extends Seeder
         foreach ($itemsToReserveFinn as $index) {
             $instance = Item_instance::find($index);
             $instance->status = "reserved";
-            $instance->reserved_for = Carbon::now()->addDays(rand(1, 8))->toDateTimeString();
+            $instance->reserved_for = Carbon::now()->addDays(rand(1, 8))->addSeconds(rand(0, 40000))->toDateTimeString();
             $instance->save();
         }
 
@@ -100,7 +100,7 @@ class DatabaseSeeder extends Seeder
         foreach ($itemsToLoanMike as $index) {
             $instance = Item_instance::find($index);
             $instance->status = "lent";
-            $start = Carbon::now()->subDays(rand(0, 3));
+            $start = Carbon::now()->subDays(rand(0, 8))->subSeconds(rand(0, 40000));
             $instance->current_loan_starts_at = $start->toDateTimeString();
             $instance->current_loan_ends_at = $start->addDays(5)->toDateTimeString();
             $instance->save();
@@ -108,7 +108,7 @@ class DatabaseSeeder extends Seeder
         foreach ($itemsToReserveMike as $index) {
             $instance = Item_instance::find($index);
             $instance->status = "reserved";
-            $instance->reserved_for = Carbon::now()->addDays(rand(2, 6))->toDateTimeString();
+            $instance->reserved_for = Carbon::now()->addDays(rand(2, 6))->addSeconds(rand(0, 40000))->toDateTimeString();
             $instance->save();
         }
     }

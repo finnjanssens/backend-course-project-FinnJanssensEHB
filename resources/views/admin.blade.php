@@ -63,7 +63,11 @@
                                     <td>{{ $itemI->item->model }}</td>
                                     <td>{{ $itemI->id }}</td>
                                     <td>{{ $itemI->current_loan_starts_at }}</td>
-                                    <td>{{ $itemI->current_loan_ends_at }}</td>
+                                    @if (Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $itemI->current_loan_ends_at)->subHours(24)->greaterThanOrEqualTo(Carbon\Carbon::now()))
+                                        <td>{{ $itemI->current_loan_ends_at }}</td>
+                                    @else
+                                        <td style="color: red">{{ $itemI->current_loan_ends_at }}</td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

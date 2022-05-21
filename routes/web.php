@@ -3,6 +3,7 @@
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\Item_instanceController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\ReserveController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -33,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/dashboard', [LoanController::class, "getUserLoansAndReservations"])
         ->name('dashboard');
+    Route::post('/reserve', [ReserveController::class, "reserve"]);
 });
 
 require __DIR__ . '/auth.php';

@@ -10,11 +10,10 @@ class ItemController extends Controller
 {
     public function allData()
     {
-        $brands = Item::select('brand')->distinct()->get();
-        $models = Item::select('model')->distinct()->get();
         $items = Item::all();
-        $itemInstances = Item_instance::all();
+        $lentItems = Item_instance::where('status', 'lent')->get();
+        $reservedItems = Item_instance::where('status', 'reserved')->get();
 
-        return view('admin', ["brands" => $brands, "models" => $models, "items" => $items, "itemInstances" => $itemInstances]);
+        return view('admin', ["items" => $items, "lentItems" => $lentItems, "reservedItems" => $reservedItems]);
     }
 }

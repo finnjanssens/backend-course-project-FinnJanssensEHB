@@ -80,19 +80,15 @@ class DatabaseSeeder extends Seeder
         foreach ($itemsToLoan as $index) {
             $instance = Item_instance::find($index);
             $instance->status = "lent";
+            $instance->current_loan_starts_at = Carbon::now()->toDateTimeString();
+            $instance->current_loan_ends_at = Carbon::now()->addDays(5)->toDateTimeString();
             $instance->save();
         }
         foreach ($itemsToReserve as $index) {
             $instance = Item_instance::find($index);
             $instance->status = "reserved";
+            $instance->reserved_for = Carbon::now()->addDays(2)->toDateTimeString();
             $instance->save();
-        }
-
-        $userLoans = Loan::where('user_id', 1)->get();
-
-        foreach ($userLoans as $loan) {
-            $loan->ends_at = Carbon::now()->addDays(5)->toDateTimeString();
-            $loan->save();
         }
     }
 }

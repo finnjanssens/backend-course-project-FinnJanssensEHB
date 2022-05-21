@@ -14,7 +14,6 @@ class Loan extends Model
 
     protected $fillable = [
         'active',
-        'ends_at'
     ];
 
     public function user()

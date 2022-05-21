@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('damage');
             $table->string('notes');
             $table->string('status');
+            $table->string('current_loan_starts_at')->nullable();
             $table->string('current_loan_ends_at')->nullable();
+            $table->string('reserved_for')->nullable();
         });
     }
 

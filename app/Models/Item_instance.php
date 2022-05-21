@@ -23,6 +23,9 @@ class Item_instance extends Model
         'damage',
         'notes',
         'status',
+        'current_loan_ends_at',
+        'current_loan_starts_at',
+        'reserved_for'
     ];
 
     public function loan()

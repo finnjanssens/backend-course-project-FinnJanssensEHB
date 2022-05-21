@@ -15,6 +15,6 @@ class ItemController extends Controller
         $items = Item::all();
         $itemInstances = Item_instance::all();
 
-        return view('dashboard', ["brands" => $brands, "models" => $models, "items" => $items, "itemInstances" => $itemInstances]);
+        return view('admin_dashboard', ["brands" => $brands, "models" => $models, "items" => $items, "itemInstances" => $itemInstances]);
     }
 }

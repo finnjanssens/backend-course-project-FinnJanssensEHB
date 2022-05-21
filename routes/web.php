@@ -20,10 +20,19 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::get('/dashboard', [ItemController::class, "allData"])->middleware(['auth'])->name('dashboard');
+Route::group(['middleware' => 'auth'], function () {
+    Route::group([
+        'middleware' => 'is_admin',
+    ], function () {
+        Route::get('/admin', [ItemController::class, "allData"])
+            ->name('admin');
+        Route::get('/item/{id}', [Item_instanceController::class, "getItemInstances"]);
+        Route::post('/item/{id}', [Item_instanceController::class, "updateItemInstance"]);
+    });
 
-Route::get('/item/{id}', [Item_instanceController::class, "getItemInstances"])->middleware(['auth']);
-
-Route::post('/item/{id}', [Item_instanceController::class, "updateItemInstance"])->middleware(['auth']);
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
 
 require __DIR__ . '/auth.php';

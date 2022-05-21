@@ -10,7 +10,7 @@ class Item_instanceController extends Controller
 {
     public function getItemInstances($id)
     {
-        $itemInstances = Item_instance::where('item', $id)->get();
+        $itemInstances = Item_instance::where('item_id', $id)->get();
         $item = Item::where('id', $id)->first();
         return view('item-instances', ['itemInstances' => $itemInstances, 'item' => $item]);
     }

@@ -23,11 +23,17 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        $TestAdmin = new User();
+        $TestAdmin->name = "mikederycke";
+        $TestAdmin->email = "mike.derycke@ehb.be";
+        $TestAdmin->password = Hash::make('backendisawesome');
+        $TestAdmin->is_admin = true;
+        $TestAdmin->save();
+
         $TestUser = new User();
-        $TestUser->name = "mikederycke";
-        $TestUser->email = "mike.derycke@ehb.be";
-        $TestUser->password = Hash::make('backendisawesome');
-        $TestUser->role = "admin";
+        $TestUser->name = "finnjanssens";
+        $TestUser->email = "finn.janssens@student.ehb.be";
+        $TestUser->password = Hash::make('backendisnotsoawesome');
         $TestUser->save();
 
         $csv = fopen(base_path("database/data/items copy.csv"), "r");

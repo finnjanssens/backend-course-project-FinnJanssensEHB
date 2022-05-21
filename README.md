@@ -28,3 +28,7 @@
 -   [ ] Mogelijkheid tot toewijzen sanctie bij onopgehaalde gereserveerde items
 
 ### ERD
+
+### Bronnen
+
+User/Admin system - https://www.youtube.com/watch?v=kZOgH3-0Bko

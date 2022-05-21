@@ -4,19 +4,26 @@
 
 ---
 
+**BELANGRIJK**
+
+Eerst volgende commando's runnen:
+`php artisan migrate:refresh`
+`php artisan db:seed`
+`php artisan schedule:work`
+
 ### User Stories
 
--   [ ] Overzicht van beschikbare items
--   [ ] Onderscheid tussen uitlenen:
+-   [x] Overzicht van beschikbare items
+-   [x] Onderscheid tussen uitlenen (data zit in database maar wordt niet getoond):
     -   voor school gebruik
     -   voor privé gebruik
     -   op de campus
--   [ ] Standaard termijn van 5 dagen
+-   [x] Standaard termijn van 5 dagen
     -   [ ] Mogelijkheid om termijn in de toekomst aan te passen
--   [ ] Bij terugkeer mogelijkheid om schade of opmerkingen te noteren
+-   [x] Bij terugkeer mogelijkheid om schade of opmerkingen te noteren
 -   [ ] Notificaties via mail aan gebruik over aflopen termijn
--   [ ] Mogelijkheid om te kunnen reserveren voor later moment
--   [ ] Items moeten volgende statussen kunnen hebben:
+-   [x] Mogelijkheid om te kunnen reserveren voor later moment
+-   [x] Items moeten volgende statussen kunnen hebben:
     -   Beschikbaar
     -   Uitgeleend
     -   Gereserveerd

@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
         $TestUser->password = Hash::make('backendisnotsoawesome');
         $TestUser->save();
 
-        $csv = fopen(base_path("database/data/items copy.csv"), "r");
+        $csv = fopen(base_path("database/data/items.csv"), "r");
         $firstline = true;
         while (($data = fgetcsv($csv, 2000, ";")) !== FALSE) {
             if (!$firstline) {

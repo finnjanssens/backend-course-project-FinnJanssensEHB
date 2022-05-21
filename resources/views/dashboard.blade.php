@@ -4,13 +4,13 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    <div class="py-8">
+    <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="py-4">
+                <h2 class="font-bold text-xl text-black leading-tight">My Lent Items</h2>
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="py-4">
-                        <h2 class="font-bold text-xl text-black leading-tight">My Lent Items</h2>
-                    </div>
                     <table class="table-auto w-full">
                         <thead>
                             <tr>
@@ -37,13 +37,13 @@
             </div>
         </div>
     </div>
-    <div class="py-8">
+    <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="py-4">
+                <h2 class="font-bold text-xl text-black leading-tight">My Reserved Items</h2>
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="py-4">
-                        <h2 class="font-bold text-xl text-black leading-tight">My Reserved Items</h2>
-                    </div>
                     <table class="table-auto w-full">
                         <thead>
                             <tr>

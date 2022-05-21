@@ -23,7 +23,6 @@ class Item_instance extends Model
         'damage',
         'notes',
         'status',
-        'loan_id'
     ];
 
     public function loan()

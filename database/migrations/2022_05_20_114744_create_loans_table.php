@@ -18,6 +18,8 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('user_id')->nullable()->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('item_instance_id')->nullable()->references('id')->on('item_instances')->onDelete('cascade');
+            $table->boolean('active')->default(true);
+            $table->string('ends_at')->nullable();
         });
     }
 

@@ -21,7 +21,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $loan_types = [
+            'school',
+            'private',
+            'campus',
+        ];
 
         $TestAdmin = new User();
         $TestAdmin->name = "mikederycke";
@@ -46,6 +50,7 @@ class DatabaseSeeder extends Seeder
                 $item->model = $data['1'];
                 $item->category = $data['2'];
                 $item->description = $data['3'];
+                $item->loan_type = $loan_types[rand(0, 2)];
                 $item->save();
             }
             $firstline = false;
@@ -57,7 +62,7 @@ class DatabaseSeeder extends Seeder
 
 
         foreach ($items as $i) {
-            for ($j = 0; $j < rand(1, 5); $j++) {
+            for ($j = 0; $j < rand(1, 3); $j++) {
                 $i->item_instances()->create([
                     'damage' => '',
                     'notes' => '',
@@ -81,6 +86,13 @@ class DatabaseSeeder extends Seeder
             $instance = Item_instance::find($index);
             $instance->status = "reserved";
             $instance->save();
+        }
+
+        $userLoans = Loan::where('user_id', 1)->get();
+
+        foreach ($userLoans as $loan) {
+            $loan->ends_at = Carbon::now()->addDays(5)->toDateTimeString();
+            $loan->save();
         }
     }
 }

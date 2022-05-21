@@ -12,6 +12,11 @@ class Loan extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'active',
+        'ends_at'
+    ];
+
     public function user()
     {
         return $this->hasOne(User::class);

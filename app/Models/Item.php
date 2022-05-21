@@ -18,7 +18,8 @@ class Item extends Model
         'brand',
         'model',
         'description',
-        'category'
+        'category',
+        'loan_type',
     ];
 
     public function item_instances()

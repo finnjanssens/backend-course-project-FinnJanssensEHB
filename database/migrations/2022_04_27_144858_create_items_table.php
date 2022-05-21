@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('model');
             $table->string('category');
             $table->string('description');
+            $table->string('loan_type');
             $table->timestamps();
         });
     }
